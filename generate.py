@@ -194,7 +194,7 @@ def main(
                 label="Output",
             )
         ],
-        title="🇹🇭 OpenThaiGPT 0.1.0-beta",
+        title="🇹🇭 OpenThaiGPT 0.1.0-beta แก้คำผิด",
         description="🇹🇭 OpenThaiGPT 0.1.0-beta is a 7B-parameter LLaMA model finetuned to follow Thai instructions. It is trained on various dataset and makes use of the Huggingface LLaMA implementation. For more information, please visit [the project's website](https://openthaigpt.aieat.or.th).",  # noqa: E501
     ).queue().launch(server_name="0.0.0.0", share=share_gradio)
     # Old testing code follows.

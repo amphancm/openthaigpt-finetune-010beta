@@ -5,9 +5,11 @@ import transformers
 from peft import PeftModel
 from transformers import LlamaForCausalLM, LlamaTokenizer  # noqa: F402
 
-BASE_MODEL = os.environ.get("BASE_MODEL", None)
+#BASE_MODEL = os.environ.get("BASE_MODEL", None)
+BASE_MODEL = '/content/drive/MyDrive/BaseModel/openthaigpt-1.0.0-beta-7b-chat-ckpt-hf'
+
 assert (
-    BASE_MODEL
+    BASE_MODEL 
 ), "Please specify a value for BASE_MODEL environment variable, e.g. `export BASE_MODEL=decapoda-research/llama-7b-hf`"  # noqa: E501
 
 tokenizer = LlamaTokenizer.from_pretrained(BASE_MODEL)
@@ -16,7 +18,7 @@ base_model = LlamaForCausalLM.from_pretrained(
     BASE_MODEL,
     load_in_8bit=False,
     torch_dtype=torch.float16,
-    device_map={"": "cpu"},
+    device_map={"": "cuda"},
 )
 
 first_weight = base_model.model.layers[0].self_attn.q_proj.weight
@@ -24,7 +26,7 @@ first_weight_old = first_weight.clone()
 
 lora_model = PeftModel.from_pretrained(
     base_model,
-    "./openthaigpt-010-beta",
+    "/content/drive/MyDrive/TrainModel/pantip2",
     device_map={"": "cpu"},
     torch_dtype=torch.float16,
 )

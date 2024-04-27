@@ -10,4 +10,4 @@ fire
 peft==0.6.2
 transformers==4.28.0
 sentencepiece
-gradio
+gradio==3.44.4

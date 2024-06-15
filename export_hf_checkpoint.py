@@ -6,7 +6,7 @@ from peft import PeftModel
 from transformers import LlamaForCausalLM, LlamaTokenizer  # noqa: F402
 
 #BASE_MODEL = os.environ.get("BASE_MODEL", None)
-BASE_MODEL = '/content/drive/MyDrive/BaseModel/openthaigpt-1.0.0-beta-7b-chat-ckpt-hf'
+BASE_MODEL = '/content/drive/MyDrive/BaseModel/openthaigpt-1.0.0-7b-chat'
 
 assert (
     BASE_MODEL 
@@ -26,7 +26,7 @@ first_weight_old = first_weight.clone()
 
 lora_model = PeftModel.from_pretrained(
     base_model,
-    "/content/drive/MyDrive/TrainModel/pantip2",
+    "/content/drive/MyDrive/TrainModel/pantip",
     device_map={"": "cpu"},
     torch_dtype=torch.float16,
 )
@@ -53,5 +53,5 @@ deloreanized_sd = {
 }
 
 LlamaForCausalLM.save_pretrained(
-    base_model, "./hf_ckpt", state_dict=deloreanized_sd, max_shard_size="400MB"
+    base_model, "./hf_ckpt", state_dict=deloreanized_sd, max_shard_size="4000MB"
 )

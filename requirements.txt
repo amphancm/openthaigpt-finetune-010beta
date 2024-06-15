@@ -8,6 +8,6 @@ datasets
 fire
 #git+https://github.com/huggingface/peft.git
 peft==0.6.2
-transformers==4.28.0
+#transformers==4.28.0
 sentencepiece
 gradio==3.44.4
